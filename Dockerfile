@@ -1,92 +1,59 @@
-FROM k8s.gcr.io/kube-apiserver:v1.21.11
-FROM k8s.gcr.io/kube-controller-manager:v1.21.11
-FROM k8s.gcr.io/kube-scheduler:v1.21.11
-FROM k8s.gcr.io/kube-proxy:v1.21.11
-FROM calico/cni:v3.22.1
-FROM calico/pod2daemon-flexvol:v3.22.1
-FROM calico/node:v3.22.1
-FROM k8s.gcr.io/kube-apiserver:v1.21.0
-FROM k8s.gcr.io/kube-proxy:v1.21.0
-FROM k8s.gcr.io/kube-controller-manager:v1.21.0
-FROM k8s.gcr.io/kube-scheduler:v1.21.0
-FROM k8s.gcr.io/pause:3.4.1
-FROM k8s.gcr.io/coredns/coredns:v1.8.0
-FROM k8s.gcr.io/etcd:3.4.13-0
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-tensorflow-full:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/central-dashboard:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-full:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/tensorboard-controller:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-controller:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/admission-webhook:v1.5.0
-FROM kubeflowkatib/katib-db-manager:v0.13.0
-FROM calico/kube-controllers:v3.22.1
-FROM calico/cni:v3.22.1
-FROM calico/pod2daemon-flexvol:v3.22.1
-FROM calico/node:v3.22.1
-FROM gcr.io/ml-pipeline/scheduledworkflow:1.8.1
-FROM gcr.io/ml-pipeline/persistenceagent:1.8.1
-FROM gcr.io/ml-pipeline/visualization-server:1.8.1
-FROM gcr.io/ml-pipeline/cache-deployer:1.8.1
-FROM gcr.io/ml-pipeline/metadata-writer:1.8.1
-FROM kserve/models-web-app:v0.7.0
-FROM public.ecr.aws/j1r0q0g6/training/training-operator:174e8813666951ded505daf334a37f60fd50c18d
-FROM gcr.io/tfx-oss-public/ml_metadata_store_server:1.5.0
-FROM istio/proxyv2:1.11.4
-FROM istio/pilot:1.11.4
-FROM kserve/kserve-controller:v0.7.0
-FROM kfserving/models-web-app:v0.6.1
-FROM kfserving/kfserving-controller:v0.6.1
-FROM quay.io/jetstack/cert-manager-webhook:v1.5.0
-FROM metacontrollerio/metacontroller:v2.0.4
-FROM gcr.io/knative-releases/knative.dev/serving/cmd/autoscaler:latest
-FROM gcr.io/knative-releases/knative.dev/serving/cmd/controller:latest
-FROM gcr.io/knative-releases/knative.dev/eventing/cmd/webhook:latest
-FROM gcr.io/knative-releases/knative.dev/eventing/cmd/mtchannel_broker:latest
-FROM gcr.io/knative-releases/knative.dev/eventing/cmd/broker/filter:latest
-FROM k8s.gcr.io/kube-proxy:v1.21.0
-FROM gcr.io/knative-releases/knative.dev/net-istio/cmd/webhook:latest
-FROM gcr.io/knative-releases/knative.dev/net-istio/cmd/controller:latest
-FROM k8s.gcr.io/pause:3.4.1
-FROM k8s.gcr.io/coredns/coredns:v1.8.0
-FROM gcr.io/kubebuilder/kube-rbac-proxy:v0.4.0
-FROM python:3.7
-FROM busybox:latest
-FROM public.ecr.aws/j1r0q0g6/notebooks/jupyter-web-app:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/volumes-web-app:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/tensorboards-web-app:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/profile-controller:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-scipy:v1.5.0
-FROM public.ecr.aws/j1r0q0g6/notebooks/access-management:v1.5.0
-FROM kubeflowkatib/katib-ui:v0.13.0
-FROM kubeflowkatib/katib-controller:v0.13.0
-FROM calico/cni:v3.22.1
-FROM calico/pod2daemon-flexvol:v3.22.1
-FROM calico/node:v3.22.1
-FROM gcr.io/ml-pipeline/metadata-envoy:1.8.1
-FROM gcr.io/ml-pipeline/viewer-crd-controller:1.8.1
-FROM gcr.io/ml-pipeline/api-server:1.8.1
-FROM gcr.io/ml-pipeline/frontend:1.8.1
-FROM gcr.io/ml-pipeline/cache-server:1.8.1
-FROM gcr.io/ml-pipeline/workflow-controller:v3.2.3-license-compliance
-FROM istio/proxyv2:1.11.4
-FROM mysql:8.0.26
-FROM quay.io/jetstack/cert-manager-cainjector:v1.5.0
-FROM quay.io/jetstack/cert-manager-controller:v1.5.0
-FROM gcr.io/knative-releases/knative.dev/serving/cmd/activator:latest
-FROM gcr.io/knative-releases/knative.dev/serving/cmd/webhook:latest
-FROM gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_dispatcher:latest
-FROM gcr.io/knative-releases/knative.dev/eventing/cmd/controller:latest
-FROM gcr.io/knative-releases/knative.dev/eventing/cmd/in_memory/channel_controller:latest
-FROM gcr.io/knative-releases/knative.dev/eventing/cmd/broker/ingress:latest
-FROM k8s.gcr.io/kube-proxy:v1.21.0
-FROM gcr.io/ml-pipeline/mysql:5.7
-FROM gcr.io/k8s-staging-sig-storage/nfs-subdir-external-provisioner:v4.0.0
-FROM k8s.gcr.io/pause:3.4.1
-FROM quay.io/dexidp/dex:v2.24.0
-FROM gcr.io/arrikto/kubeflow/oidc-authservice:28c59ef
-FROM gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
-FROM quay.io/external_storage/nfs-client-provisioner:latest
-FROM busybox:1.27
+FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/codeserver:master-434b10ab
 
+USER root
 
+# args - software versions
+ARG CODESERVER_PYTHON_VERSION=2021.5.842923320
+ARG MINIFORGE_ARCH="x86_64"
+ # renovate: datasource=github-tags depName=conda-forge/miniforge versioning=loose
+ARG MINIFORGE_VERSION=4.10.1-4
+ARG PIP_VERSION=21.1.2
+ARG PYTHON_VERSION=3.8.10
 
+# setup environment for conda
+ENV CONDA_DIR /opt/conda
+ENV PATH "${CONDA_DIR}/bin:${PATH}"
+RUN mkdir -p ${CONDA_DIR} \
+ && chown -R ${NB_USER}:users ${CONDA_DIR}
+
+USER $NB_UID
+
+# install - conda, pip, python
+RUN curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh" -o /tmp/Miniforge3.sh \
+ && curl -sL "https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/Miniforge3-${MINIFORGE_VERSION}-Linux-${MINIFORGE_ARCH}.sh.sha256" -o /tmp/Miniforge3.sh.sha256 \
+ && echo "$(cat /tmp/Miniforge3.sh.sha256 | awk '{ print $1; }') /tmp/Miniforge3.sh" | sha256sum --check \
+ && rm /tmp/Miniforge3.sh.sha256 \
+ && /bin/bash /tmp/Miniforge3.sh -b -f -p ${CONDA_DIR} \
+ && rm /tmp/Miniforge3.sh \
+ && conda config --system --set auto_update_conda false \
+ && conda config --system --set show_channel_urls true \
+ && echo "conda ${MINIFORGE_VERSION:0:-2}" >> ${CONDA_DIR}/conda-meta/pinned \
+ && echo "python ${PYTHON_VERSION}" >> ${CONDA_DIR}/conda-meta/pinned \
+ && conda install -y -q \
+    python=${PYTHON_VERSION} \
+    conda=${MINIFORGE_VERSION:0:-2} \
+    pip=${PIP_VERSION} \
+ && conda update -y -q --all \
+ && conda clean -a -f -y \
+ && chown -R ${NB_USER}:users ${CONDA_DIR} \
+ && chown -R ${NB_USER}:users ${HOME}
+
+# install - requirements.txt
+COPY --chown=jovyan:users requirements.txt /tmp
+RUN python3 -m pip install -r /tmp/requirements.txt --quiet --no-cache-dir \
+ && rm -f /tmp/requirements.txt \
+ && chown -R ${NB_USER}:users ${CONDA_DIR} \
+ && chown -R ${NB_USER}:users ${HOME}
+
+# install - codeserver extensions
+RUN code-server --install-extension "ms-python.python@${CODESERVER_PYTHON_VERSION}"
+
+# s6 - copy scripts
+COPY --chown=jovyan:users s6/ /etc
+
+# s6 - 01-copy-tmp-home
+USER root
+RUN mkdir -p /tmp_home \
+ && cp -r ${HOME} /tmp_home \
+ && chown -R ${NB_USER}:users /tmp_home
+USER root
