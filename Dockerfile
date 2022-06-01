@@ -44,3 +44,4 @@ RUN echo "jovyan    ALL=(ALL:ALL) NOPASSWD:ALL">> /etc/sudoers
 USER jovyan
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ENV PATH "/opt/conda/bin:${PATH}"
+RUN echo "alias ll='ls -l'" >> ~/.bashrc
