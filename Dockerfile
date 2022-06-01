@@ -38,9 +38,9 @@ deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe m
 deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
 
 EOF
-ENV PATH "/opt/conda/bin:${PATH}"
 RUN echo "jovyan    ALL=(ALL:ALL) NOPASSWD:ALL">> /etc/sudoers
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138 0E98404D386FA1D9 605C66F00D6C9793 112695A0E562B32A 54404762BBB6E853 112695A0E562B32A 54404762BBB6E853
 RUN apt-get clean && apt-get update && apt-get install sudo
-RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 USER jovyan
+RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+ENV PATH "/opt/conda/bin:${PATH}"
