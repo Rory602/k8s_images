@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1.3-labs
-FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/codeserver-python:v1.5.0
+FROM public.ecr.aws/j1r0q0g6/notebooks/notebook-servers/jupyter-pytorch-cuda-full:v1.5.0
 RUN <<EOF cat >/opt/conda/.condarc
 channels:
   - defaults
